@@ -335,7 +335,6 @@ class admin_controller_test extends \phpbb_database_test_case
 				'S_ADD_AD'				=> true,
 				'U_BACK'				=> $this->u_action,
 				'U_ACTION'				=> "{$this->u_action}&amp;action=add",
-				'PICKER_DATE_FORMAT'	=> ext::DATE_FORMAT,
 				'U_FIND_USERNAME'		=> 'u_find_username',
 				'U_ENABLE_VISUAL_DEMO'	=> null,
 			));
@@ -687,7 +686,6 @@ class admin_controller_test extends \phpbb_database_test_case
 					'EDIT_ID'				=> $ad_id,
 					'U_BACK'				=> $this->u_action,
 					'U_ACTION'				=> "{$this->u_action}&amp;action=edit&amp;id=" . $ad_id,
-					'PICKER_DATE_FORMAT'	=> ext::DATE_FORMAT,
 					'U_FIND_USERNAME'		=> 'u_find_username',
 					'U_ENABLE_VISUAL_DEMO'	=> null,
 				));
@@ -752,7 +750,6 @@ class admin_controller_test extends \phpbb_database_test_case
 				'EDIT_ID'				=> 1,
 				'U_BACK'				=> $this->u_action,
 				'U_ACTION'				=> "{$this->u_action}&amp;action=edit&amp;id=1",
-				'PICKER_DATE_FORMAT'	=> ext::DATE_FORMAT,
 				'U_FIND_USERNAME'		=> 'u_find_username',
 				'U_ENABLE_VISUAL_DEMO'	=> null,
 			));
@@ -860,7 +857,6 @@ class admin_controller_test extends \phpbb_database_test_case
 					'EDIT_ID'				=> 1,
 					'U_BACK'				=> $this->u_action,
 					'U_ACTION'				=> "{$this->u_action}&amp;action=edit&amp;id=1",
-					'PICKER_DATE_FORMAT'	=> ext::DATE_FORMAT,
 					'U_FIND_USERNAME'		=> 'u_find_username',
 					'U_ENABLE_VISUAL_DEMO'	=> null,
 				));
