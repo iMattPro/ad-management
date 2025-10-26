@@ -331,7 +331,7 @@ class admin_input
 		$timestamp = 0;
 		if (preg_match('#^\d{4}-\d{2}-\d{2}$#', $date))
 		{
-			$timestamp = (int) $this->user->get_timestamp_from_format(ext::DATE_FORMAT, $date);
+			$timestamp = (int) $this->user->get_timestamp_from_format(ext::DATE_FORMAT, $date, new \DateTimeZone('UTC'));
 
 			if ($timestamp < time())
 			{
