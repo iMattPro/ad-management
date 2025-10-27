@@ -325,25 +325,28 @@ class admin_input
 	 */
 	protected function validate_date($date, $type)
 	{
-		$timestamp = 0;
-		if (preg_match('#^\d{4}-\d{2}-\d{2}$#', $date))
+		if ($date === '')
 		{
-			// Create a UTC midnight timestamp for storage consistency
-			$datetime = \DateTime::createFromFormat(ext::DATE_FORMAT, $date, new \DateTimeZone('UTC'));
-			$datetime->setTime(0, 0, 0); // Ensure midnight (00:00:00)
-			$timestamp = $datetime->getTimestamp();
-
-			// Compare against a user's timezone to prevent timezone confusion
-			// 'today' creates today's date at midnight in the user's timezone
-			$user_today = new \DateTime('today', $this->user->timezone);
-			if ($timestamp < $user_today->getTimestamp())
-			{
-				$this->errors[] = 'AD_' . $type . '_DATE_INVALID';
-			}
+			return 0;
 		}
-		else if ($date !== '')
+
+		if (!preg_match('#^\d{4}-\d{2}-\d{2}$#', $date))
 		{
 			$this->errors[] = 'AD_' . $type . '_DATE_INVALID';
+			return 0;
+		}
+
+		// Create a UTC midnight timestamp for storage consistency
+		$datetime = \DateTime::createFromFormat(ext::DATE_FORMAT, $date, new \DateTimeZone('UTC'));
+		$datetime->setTime(0, 0, 0); // Ensure midnight (00:00:00)
+		$timestamp = $datetime->getTimestamp();
+
+		// Compare against user's current day to avoid timezone confusion
+		$user_today = new \DateTime('today', $this->user->timezone);
+		if ($timestamp < $user_today->getTimestamp())
+		{
+			$this->errors[] = 'AD_' . $type . '_DATE_INVALID';
+			return 0;
 		}
 
 		return $timestamp;
