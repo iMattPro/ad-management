@@ -342,8 +342,7 @@ class admin_input
 		$timestamp = $datetime->getTimestamp();
 
 		// Compare against user's current day to avoid timezone confusion
-		$user_today = new \DateTime('today', $this->user->timezone);
-		if ($timestamp < $user_today->getTimestamp())
+		if ($timestamp < $this->user->create_datetime('today')->getTimestamp())
 		{
 			$this->errors[] = 'AD_' . $type . '_DATE_INVALID';
 			return 0;
