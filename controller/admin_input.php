@@ -319,23 +319,24 @@ class admin_input
 	/**
 	 * Validate advertisement date
 	 *
-	 * The date must use the expected format of YYYY-MM-DD.
-	 * If the date is valid, convert it to a timestamp and then
-	 * make sure the timestamp is less than the current time.
-	 *
 	 * @param string $date Advertisement date
-	 * @return int The date converted to timestamp if valid, otherwise 0.
+	 * @param string $type Date type
+	 * @return int UTC midnight timestamp if valid, otherwise 0
 	 */
 	protected function validate_date($date, $type)
 	{
 		$timestamp = 0;
 		if (preg_match('#^\d{4}-\d{2}-\d{2}$#', $date))
 		{
+			// Create a UTC midnight timestamp for storage consistency
 			$datetime = \DateTime::createFromFormat(ext::DATE_FORMAT, $date, new \DateTimeZone('UTC'));
-			$datetime->setTime(0, 0, 0);
+			$datetime->setTime(0, 0, 0); // Ensure midnight (00:00:00)
 			$timestamp = $datetime->getTimestamp();
 
-			if ($timestamp < time())
+			// Compare against a user's timezone to prevent timezone confusion
+			// 'today' creates today's date at midnight in the user's timezone
+			$user_today = new \DateTime('today', $this->user->timezone);
+			if ($timestamp < $user_today->getTimestamp())
 			{
 				$this->errors[] = 'AD_' . $type . '_DATE_INVALID';
 			}
