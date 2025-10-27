@@ -28,7 +28,6 @@ class get_ads_by_timezone_test extends ad_base
 	private function create_test_ad($start_timestamp)
 	{
 		$ad_data = [
-			'ad_id' => 99,
 			'ad_name' => 'Test',
 			'ad_note' => 'Test',
 			'ad_code' => 'Test Ad',
@@ -38,7 +37,8 @@ class get_ads_by_timezone_test extends ad_base
 			'ad_priority' => 5,
 		];
 		$this->db->sql_query('INSERT INTO ' . $this->ads_table . ' ' . $this->db->sql_build_array('INSERT', $ad_data));
-		$this->db->sql_query('INSERT INTO ' . $this->ad_locations_table . ' ' . $this->db->sql_build_array('INSERT', ['ad_id' => 99, 'location_id' => 'test_location']));
+		$ad_id = $this->db->sql_last_inserted_id();
+		$this->db->sql_query('INSERT INTO ' . $this->ad_locations_table . ' ' . $this->db->sql_build_array('INSERT', ['ad_id' => $ad_id, 'location_id' => 'test_location']));
 	}
 
 	private function assert_user_sees_ad($timezone, $datetime, $should_see)

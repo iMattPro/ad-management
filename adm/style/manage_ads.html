@@ -203,10 +203,10 @@
 						<tr{% if ad.S_EXPIRED %} title="{{ lang('AD_EXPIRED_EXPLAIN') }}"{% endif %}>
 							<td><strong>{{ ad.NAME }}</strong></td>
 							<td>{{ ad.PRIORITY }}</td>
-							<td>{{ ad.START_DATE ? ad.START_DATE|date(constant('\\phpbb\\ads\\ext::DATE_FORMAT'), 'UTC') ~ ' (' ~ lang('UTC') ~ ')' }}</td>
+							<td>{{ ad.START_DATE ? ad.START_DATE|date(constant('\\phpbb\\ads\\ext::DATE_FORMAT'), 'UTC') }}</td>
 							<td>
 								{% if ad.END_DATE < NOW %}<strong class="error">{% endif %}
-									{{ ad.END_DATE ? ad.END_DATE|date(constant('\\phpbb\\ads\\ext::DATE_FORMAT'), 'UTC') ~ ' (' ~ lang('UTC') ~ ')' }}
+									{{ ad.END_DATE ? ad.END_DATE|date(constant('\\phpbb\\ads\\ext::DATE_FORMAT'), 'UTC') }}
 								{% if ad.END_DATE < NOW %}</strong>{% endif %}
 							</td>
 							{% if S_VIEWS_ENABLED %}

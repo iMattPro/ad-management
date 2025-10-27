@@ -57,9 +57,9 @@ $lang = array_merge($lang, array(
 	'AD_CLICKS_LIMIT'			=> 'Clicks Limit',
 	'AD_CLICKS_LIMIT_EXPLAIN'	=> 'Set the maximum number of times the advertisement will be clicked, after which the advertisement will no longer be displayed. Set 0 for unlimited clicks.',
 	'AD_START_DATE'				=> 'Start Date',
-	'AD_START_DATE_EXPLAIN'		=> 'Specify the date (UTC) when this advertisement will automatically be enabled. If no date is set, the advertisement will only become active when manually enabled.',
+	'AD_START_DATE_EXPLAIN'		=> 'Specify the date when this advertisement will automatically be enabled. If no date is set, the advertisement will only become active when manually enabled.',
 	'AD_END_DATE'				=> 'End Date',
-	'AD_END_DATE_EXPLAIN'		=> 'Specify the date (UTC) when this advertisement will automatically be disabled. If no date is set, the advertisement will not expire automatically.',
+	'AD_END_DATE_EXPLAIN'		=> 'Specify the date when this advertisement will automatically be disabled. If no date is set, the advertisement will not expire automatically.',
 	'AD_CENTERING'				=> 'Center this advertisement automatically',
 	'AD_CENTERING_EXPLAIN'		=> 'Set to yes to let this extension center your advertisement automatically. If this leads to undesired results, use CSS directly in the code to center your advertisement accordingly.',
 

@@ -80,7 +80,7 @@ class main_listener_base extends \phpbb_database_test_case
 	{
 		parent::setUp();
 
-		global $user, $phpbb_path_helper, $phpbb_root_path, $phpEx, $phpbb_dispatcher;
+		global $config, $user, $phpbb_path_helper, $phpbb_root_path, $phpEx, $phpbb_dispatcher;
 
 		$phpbb_path_helper = $this->getMockBuilder('\phpbb\path_helper')
 			->disableOriginalConstructor()
@@ -92,7 +92,7 @@ class main_listener_base extends \phpbb_database_test_case
 		$request = $this->getMockBuilder('\phpbb\request\request')
 			->disableOriginalConstructor()
 			->getMock();
-		$config = new \phpbb\config\config(array());
+		$config = new \phpbb\config\config(['board_timezone' => '']);
 		$template = $this->getMockBuilder('\phpbb\template\template')
 			->disableOriginalConstructor()
 			->getMock();
