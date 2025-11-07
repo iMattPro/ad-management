@@ -117,7 +117,7 @@ class helper_test extends \phpbb_database_test_case
 	 */
 	public function get_helper()
 	{
-		$helper = new \phpbb\ads\controller\helper(
+		return new \phpbb\ads\controller\helper(
 			$this->user,
 			$this->user_loader,
 			$this->language,
@@ -129,8 +129,6 @@ class helper_test extends \phpbb_database_test_case
 			$this->root_path,
 			$this->php_ext
 		);
-
-		return $helper;
 	}
 
 	/**
@@ -394,6 +392,26 @@ class helper_test extends \phpbb_database_test_case
 		$helper = $this->get_helper();
 		$result = $helper->get_find_username_link();
 		self::assertEquals("{$this->root_path}memberlist.{$this->php_ext}?mode=searchuser&amp;form=acp_admanagement_add&amp;field=ad_owner&amp;select_single=true", $result);
+	}
+
+	/**
+	 * Test get_date()
+	 */
+	public function test_get_date()
+	{
+		$helper = $this->get_helper();
+
+		// Test 'now' returns today's date in Y-m-d format
+		$result = $helper->get_date('now');
+		$this->assertEquals(date('Y-m-d'), $result);
+
+		// Test 'today' returns today's date
+		$result = $helper->get_date('today');
+		$this->assertEquals(date('Y-m-d'), $result);
+
+		// Test 'tomorrow' returns tomorrow's date
+		$result = $helper->get_date('tomorrow');
+		$this->assertEquals(date('Y-m-d', strtotime('+1 day')), $result);
 	}
 
 	/**

@@ -329,6 +329,11 @@ class admin_controller_test extends \phpbb_database_test_case
 			->method('get_find_username_link')
 			->willReturn('u_find_username');
 
+		$this->helper->expects(self::once())
+			->method('get_date')
+			->with('tomorrow')
+			->willReturn('2000-12-16');
+
 		$this->template->expects(self::once())
 			->method('assign_vars')
 			->with(array(
@@ -337,6 +342,7 @@ class admin_controller_test extends \phpbb_database_test_case
 				'U_ACTION'				=> "{$this->u_action}&amp;action=add",
 				'U_FIND_USERNAME'		=> 'u_find_username',
 				'U_ENABLE_VISUAL_DEMO'	=> null,
+				'DATE_MINIMUM'			=> '2000-12-16',
 			));
 
 		$this->request->expects(self::once())
@@ -679,6 +685,11 @@ class admin_controller_test extends \phpbb_database_test_case
 				->method('get_find_username_link')
 				->willReturn('u_find_username');
 
+			$this->helper->expects(self::once())
+				->method('get_date')
+				->with('tomorrow')
+				->willReturn('2000-12-16');
+
 			$this->template->expects(self::once())
 				->method('assign_vars')
 				->with(array(
@@ -688,6 +699,7 @@ class admin_controller_test extends \phpbb_database_test_case
 					'U_ACTION'				=> "{$this->u_action}&amp;action=edit&amp;id=" . $ad_id,
 					'U_FIND_USERNAME'		=> 'u_find_username',
 					'U_ENABLE_VISUAL_DEMO'	=> null,
+					'DATE_MINIMUM'			=> '2000-12-16',
 				));
 
 			$this->input->expects(self::once())
@@ -743,6 +755,11 @@ class admin_controller_test extends \phpbb_database_test_case
 			->method('assign_var')
 			->with('PREVIEW', 'Ad Code #1');
 
+		$this->helper->expects(self::once())
+			->method('get_date')
+			->with('tomorrow')
+			->willReturn('2000-12-16');
+
 		$this->template->expects(self::once())
 			->method('assign_vars')
 			->with(array(
@@ -752,6 +769,7 @@ class admin_controller_test extends \phpbb_database_test_case
 				'U_ACTION'				=> "{$this->u_action}&amp;action=edit&amp;id=1",
 				'U_FIND_USERNAME'		=> 'u_find_username',
 				'U_ENABLE_VISUAL_DEMO'	=> null,
+				'DATE_MINIMUM'			=> '2000-12-16',
 			));
 
 		$this->input->expects(self::once())
@@ -850,6 +868,11 @@ class admin_controller_test extends \phpbb_database_test_case
 				->method('get_find_username_link')
 				->willReturn('u_find_username');
 
+			$this->helper->expects(self::once())
+				->method('get_date')
+				->with('tomorrow')
+				->willReturn('2000-12-16');
+
 			$this->template->expects(self::once())
 				->method('assign_vars')
 				->with(array(
@@ -859,6 +882,7 @@ class admin_controller_test extends \phpbb_database_test_case
 					'U_ACTION'				=> "{$this->u_action}&amp;action=edit&amp;id=1",
 					'U_FIND_USERNAME'		=> 'u_find_username',
 					'U_ENABLE_VISUAL_DEMO'	=> null,
+					'DATE_MINIMUM'			=>'2000-12-16',
 				));
 
 			$this->input->expects(self::once())

@@ -10,6 +10,8 @@
 
 namespace phpbb\ads\controller;
 
+use phpbb\ads\ext;
+
 /**
  * Helper
  */
@@ -178,6 +180,17 @@ class helper
 	public function get_find_username_link()
 	{
 		return append_sid("{$this->root_path}memberlist.{$this->php_ext}", 'mode=searchuser&amp;form=acp_admanagement_add&amp;field=ad_owner&amp;select_single=true');
+	}
+
+	/**
+	 * Get a date in the current user's timezone and the correct format.
+	 *
+	 * @param string $time
+	 * @return string Formatted date time
+	 */
+	public function get_date($time = 'now')
+	{
+		return $this->user->create_datetime($time)->format(ext::DATE_FORMAT);
 	}
 
 	/**
