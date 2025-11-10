@@ -201,7 +201,7 @@ class helper
 	 */
 	public function is_expired($row)
 	{
-		$latest_timezone_end = time() - (12 * 3600); // UTC-12 is the last timezone
+		$latest_timezone_end = strtotime('now -12 hours'); // UTC-12 is the last timezone
 		if ((int) $row['ad_end_date'] > 0 && (int) $row['ad_end_date'] < $latest_timezone_end)
 		{
 			return true;
