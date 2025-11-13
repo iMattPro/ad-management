@@ -80,7 +80,7 @@ class main_listener_base extends \phpbb_database_test_case
 	{
 		parent::setUp();
 
-		global $user, $phpbb_path_helper, $phpbb_root_path, $phpEx, $phpbb_dispatcher;
+		global $config, $user, $phpbb_path_helper, $phpbb_root_path, $phpEx, $phpbb_dispatcher;
 
 		$phpbb_path_helper = $this->getMockBuilder('\phpbb\path_helper')
 			->disableOriginalConstructor()
@@ -92,7 +92,7 @@ class main_listener_base extends \phpbb_database_test_case
 		$request = $this->getMockBuilder('\phpbb\request\request')
 			->disableOriginalConstructor()
 			->getMock();
-		$config = new \phpbb\config\config(array());
+		$config = new \phpbb\config\config(['board_timezone' => '']);
 		$template = $this->getMockBuilder('\phpbb\template\template')
 			->disableOriginalConstructor()
 			->getMock();
@@ -138,9 +138,9 @@ class main_listener_base extends \phpbb_database_test_case
 			->getMock();
 		$this->user = $user;
 		$this->config = new \phpbb\config\config(array('phpbb_ads_adblocker_message' => '0'));
-		$this->manager = new \phpbb\ads\ad\manager($this->new_dbal(), $this->config, $this->ads_table, $this->ad_locations_table, $this->ad_group_table);
+		$this->manager = new \phpbb\ads\ad\manager($this->new_dbal(), $this->config, $this->user, $this->ads_table, $this->ad_locations_table, $this->ad_group_table);
 		$this->location_manager = new \phpbb\ads\location\manager($location_types);
-		$this->controller_helper = $this->controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
+		$this->controller_helper = $this->getMockBuilder('\phpbb\controller\helper')
 			->disableOriginalConstructor()
 			->getMock();
 		$this->request = $request;
